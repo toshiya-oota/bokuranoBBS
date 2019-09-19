@@ -16,7 +16,7 @@ class CommentsController extends Controller
 
         $post = Post::findOrFail($params['post_id']);
         $post->comments()->create($params);
-
+        $post->fill($params)->save();
         return redirect()->route('posts.show', ['post' => $post]);
     }
 }

@@ -3,12 +3,12 @@
 @section('content')
     <div class="container mt-4">
         <div class="border p-4">
-            <div class="mb-4 text-right">
-              <a class="btn btn-primary" href="{{ route('posts.edit', ['post' => $post]) }}">
+           <div class="mb-4 text-right">
+           <!--   <a class="btn btn-primary" href="{{ route('posts.edit', ['post' => $post]) }}">
               編集する
               </a>
             
-            <!--<form
+            <form
             style="display: inline-block;"
             method="POST"
             action="{{ route('posts.destroy', ['post' => $post]) }}"
@@ -24,8 +24,10 @@
             </h1>
 
             <p class="mb-5">
-                {!! nl2br(e($post->body)) !!}
+                {{ $post->body}}
             </p>
+            
+            {{$post}}
 
             <section>
                 @forelse($post->comments as $comment)
@@ -34,8 +36,11 @@
                             {{ $comment->created_at->format('Y.m.d H:i') }}
                         </time>
                         <p class="mt-2">
-                            {!! nl2br(e($comment->body)) !!}
+                          氏名:{!! nl2br(e($comment->name)) !!}
                         </p>
+                        <p>{!! nl2br(e($comment->body)) !!}
+                        </p>
+
                     </div>
                 @empty
                     <p>コメントはまだありません。</p>
@@ -51,9 +56,25 @@
             value="{{ $post->id }}"
              >
 
+           <div class="form-group">
+                <label for="name">
+                    氏名
+                </label>
+                <input
+                      id="name"
+                      name="name"
+                      class=" {{ $errors->has('name') ? 'is-invalid' : '' }}"
+                      value="名無し"
+                      type="text"
+                >
+                    @if ($errors->has('name'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('name') }}
+                    </div>
+                @endif
+            </div>
             <div class="form-group">
             <label for="body"></label>
-
             <textarea
             id="body"
             name="body"

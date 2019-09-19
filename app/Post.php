@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Post extends Model
 {
+    use searchable;
     protected $fillable = [
         'title',
         'body',
@@ -15,4 +17,5 @@ class Post extends Model
     {
         return $this->hasMany('App\Comment');
     }
+    
 }

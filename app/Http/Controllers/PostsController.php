@@ -9,8 +9,18 @@ class PostsController extends Controller
 {
     public function index()
     {
-        $posts=Post::with(['comments'])->orderBy('created_at','desc')->paginate(10);
+        Post::get(['*'])->searchable();
+        $posts=Post::with(['comments'])->orderBy('updated_at','desc')->paginate(10);
         return view('posts.index', ['posts' => $posts]);
+    }
+    
+    public function send(Request $request)
+    {
+        
+        $input =$request->input('find');
+        $result = Post::search($input)->get();
+        
+        return view('search.index', ['data' => $result]);
     }
     
     public function create()
@@ -33,7 +43,6 @@ class PostsController extends Controller
     public function show($post_id)
     {
     $post = Post::findOrFail($post_id);
-
     return view('posts.show', [
         'post' => $post,
     ]);
@@ -72,4 +81,5 @@ class PostsController extends Controller
 
     return redirect()->route('top');
     }
+    
 }

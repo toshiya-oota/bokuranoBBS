@@ -6,6 +6,15 @@
     </a>
 </div>
 
+<div>
+    <form action="/" method="post">
+        @csrf
+        <input type="text" id="find" name="find"
+         value="">
+        <input type="submit" value="板を検索">
+    </form>  
+</div>
+
 @section('content')
     <div class="container mt-4">
         @foreach ($posts as $post)

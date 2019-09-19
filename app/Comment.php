@@ -8,7 +8,8 @@ class Comment extends Model
 {
     protected $fillable = [
         'body',
-    ];
+        'name',
+         ];
     
     public function post()
     {
