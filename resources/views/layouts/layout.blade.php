@@ -15,8 +15,9 @@
     <header class="navbar navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="{{ url('') }}">
-                ぼくらのBBS (/・ω・)/
-            </a>
+                ぼくらのBBS (/・ω・)/</a>
+            <span class="navbar-brand" style="margin-right:10px;" >
+                -ぼくらのBBSルール:礼儀と挨拶！ あおらない！ きずつけない！(; ･`д･´)-</span> 
         </div>
     </header>
 

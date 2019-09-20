@@ -33,6 +33,7 @@ class PostsController extends Controller
     $params = $request->validate([
         'title' => 'required|max:50',
         'body' => 'required|max:2000',
+        'namemakeboard' => 'required',
     ]);
 
     Post::create($params);

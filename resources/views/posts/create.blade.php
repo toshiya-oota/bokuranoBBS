@@ -46,6 +46,23 @@
                             </div>
                         @endif
                     </div>
+                    <div class="form-group">
+                        <label for="namemakeboard">
+                            作成者
+                        </label>
+                        <input
+                            id="namemakeboard"
+                            name="namemakeboard"
+                            class="form-control {{ $errors->has('namemakeboard') ? 'is-invalid' : '' }}"
+                            value="名無しの作成者"
+                            type="text"
+                        >
+                        @if ($errors->has('namemakeboard'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('namemakeboard') }}
+                            </div>
+                        @endif
+                    </div>
 
                     <div class="mt-5">
                         <a class="btn btn-secondary" href="{{ route('top') }}">
