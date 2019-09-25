@@ -24,9 +24,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+         if (\App::environment('production')) {
+            \URL::forceScheme('https');
+         Schema::defaultStringLength(191);
+         \DB::listen(function ($query) {
         
-        Schema::defaultStringLength(191);
-        \DB::listen(function ($query) {
         $sql = $query->sql;
         for ($i = 0; $i < count($query->bindings); $i++) {
             $sql = preg_replace("/\?/", $query->bindings[$i], $sql, 1);
